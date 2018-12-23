@@ -2,6 +2,8 @@ use fields::{FieldElement, Fq, Fq2, const_fq};
 use std::ops::{Add, Sub, Mul, Neg};
 use rand::Rng;
 
+use serde_derive::{Serialize, Deserialize};
+
 fn frobenius_coeffs_c1(n: usize) -> Fq2 {
     match n % 6 {
         0 => Fq2::one(),

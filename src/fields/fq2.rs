@@ -4,6 +4,8 @@ use rand::Rng;
 
 use arith::{U256, U512};
 
+use serde_derive::{Serialize, Deserialize};
+
 use rustc_serialize::{Encodable, Encoder, Decodable, Decoder};
 
 #[inline]

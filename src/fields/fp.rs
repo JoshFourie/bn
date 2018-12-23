@@ -4,6 +4,8 @@ use super::FieldElement;
 
 use rustc_serialize::{Encodable, Encoder, Decodable, Decoder};
 
+use serde_derive::{Serialize, Deserialize};
+
 use arith::{U512, U256};
 
 macro_rules! field_impl {

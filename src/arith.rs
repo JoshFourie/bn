@@ -3,6 +3,7 @@ use rand::Rng;
 
 use rustc_serialize::{Encodable, Encoder, Decodable, Decoder};
 use byteorder::{ByteOrder, BigEndian};
+use serde_derive::{Serialize, Deserialize};
 
 /// 256-bit, stack allocated biginteger for use in prime field
 /// arithmetic.

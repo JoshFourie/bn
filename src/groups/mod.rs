@@ -5,6 +5,7 @@ use std::fmt;
 use rand::Rng;
 
 use rustc_serialize::{Encodable, Encoder, Decodable, Decoder};
+use serde_derive::{Serialize, Deserialize};
 
 pub trait GroupElement: Sized +
                     Copy +

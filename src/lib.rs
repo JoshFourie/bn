@@ -2,9 +2,7 @@ extern crate rand;
 extern crate rustc_serialize;
 extern crate byteorder;
 
-#[macro_use]
 extern crate serde_derive;
-
 extern crate serde;
 extern crate serde_json;
 
@@ -14,6 +12,7 @@ mod groups;
 
 use fields::FieldElement;
 use groups::GroupElement;
+use serde_derive::{Serialize, Deserialize};
 
 use std::ops::{Add, Sub, Mul, Neg};
 use rand::Rng;

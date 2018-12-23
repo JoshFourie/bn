@@ -16,6 +16,9 @@ name = "api"
 rand = "~0.3.14"
 rustc-serialize = "~0.3.19"
 byteorder = "~0.5.3"
+serde = "1.0"
+serde_derive = "1.0"
+serde_json  = "1.0"
 
 [dev-dependencies.bincode]
 version = "~0.6.0"

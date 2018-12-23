@@ -2,6 +2,12 @@ extern crate rand;
 extern crate rustc_serialize;
 extern crate byteorder;
 
+#[macro_use]
+extern crate serde_derive;
+
+extern crate serde;
+extern crate serde_json;
+
 mod arith;
 mod fields;
 mod groups;
@@ -12,7 +18,7 @@ use groups::GroupElement;
 use std::ops::{Add, Sub, Mul, Neg};
 use rand::Rng;
 
-#[derive(Copy, Clone, PartialEq, Eq, RustcDecodable, RustcEncodable)]
+#[derive(Copy, Clone, PartialEq, Eq, RustcDecodable, RustcEncodable, Serialize, Deserialize)]
 #[repr(C)]
 pub struct Fr(fields::Fr);
 
@@ -76,7 +82,7 @@ pub trait Group:
     fn normalize(&mut self);
 }
 
-#[derive(Copy, Clone, PartialEq, Eq, RustcDecodable, RustcEncodable)]
+#[derive(Copy, Clone, PartialEq, Eq, RustcDecodable, RustcEncodable, Serialize, Deserialize)]
 #[repr(C)]
 pub struct G1(groups::G1);
 
@@ -119,7 +125,7 @@ impl Mul<Fr> for G1 {
     fn mul(self, other: Fr) -> G1 { G1(self.0 * other.0) }
 }
 
-#[derive(Copy, Clone, PartialEq, Eq, RustcDecodable, RustcEncodable)]
+#[derive(Copy, Clone, PartialEq, Eq, RustcDecodable, RustcEncodable, Serialize, Deserialize)]
 #[repr(C)]
 pub struct G2(groups::G2);
 
@@ -162,7 +168,7 @@ impl Mul<Fr> for G2 {
     fn mul(self, other: Fr) -> G2 { G2(self.0 * other.0) }
 }
 
-#[derive(Copy, Clone, PartialEq, Eq)]
+#[derive(Copy, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[repr(C)]
 pub struct Gt(fields::Fq12);
 

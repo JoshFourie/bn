@@ -33,6 +33,7 @@ pub trait GroupParams: Sized {
     fn check_order() -> bool { false }
 }
 
+#[derive(Serialize, Deserialize)]
 #[repr(C)]
 pub struct G<P: GroupParams> {
     x: P::Base,
@@ -346,6 +347,7 @@ impl<P: GroupParams> Sub<G<P>> for G<P> {
     }
 }
 
+#[derive(Serialize, Deserialize)]
 pub struct G1Params;
 
 impl GroupParams for G1Params {
@@ -368,6 +370,8 @@ impl GroupParams for G1Params {
 
 pub type G1 = G<G1Params>;
 
+
+#[derive(Serialize, Deserialize)]
 pub struct G2Params;
 
 impl GroupParams for G2Params {
@@ -398,6 +402,7 @@ impl GroupParams for G2Params {
 
     fn check_order() -> bool { true }
 }
+
 
 pub type G2 = G<G2Params>;
 

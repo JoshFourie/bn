@@ -8,7 +8,6 @@ use rand::Rng;
 use std::ops::{Add, Sub, Mul, Neg};
 use std::fmt::Debug;
 
-
 use serde_derive::{Serialize, Deserialize};
 
 pub use self::fp::{Fq,Fr,const_fq};

@@ -16,7 +16,7 @@ pub trait GroupElement: Sized +
                     Add<Output=Self> +
                     Sub<Output=Self> +
                     Neg<Output=Self> +
-                    Mul<Fr, Output=Self>
+                    Mul<Output=Self>
 {
     fn zero() -> Self;
     fn one() -> Self;
@@ -268,6 +268,15 @@ impl<P: GroupParams> Mul<Fr> for G<P> {
         }
 
         res
+    }
+}
+
+// Dummy Mul to support generic multiplication in API.
+// This is an absolute hackjob and exposes upstream crates to errors.
+impl<P: GroupParams> Mul<Self> for G<P> {
+    type Output = G<P>;
+    fn mul(self, other: Self) -> G<P> {
+        self
     }
 }
 

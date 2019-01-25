@@ -72,7 +72,7 @@ pub trait Group:
         Add<Self, Output=Self> +
         Sub<Self, Output=Self> +
         Neg<Output=Self> +
-        Mul<Fr, Output=Self>
+        Mul<Output=Self>
 {
     fn zero() -> Self;
     fn one() -> Self;
@@ -124,6 +124,15 @@ impl Mul<Fr> for G1 {
     fn mul(self, other: Fr) -> G1 { G1(self.0 * other.0) }
 }
 
+// Dummy Mul for generics in upstream crates using Group trait.
+// This is a hackjob that exposes upstream crates to hidden errors.
+impl Mul<Self> for G1 {
+    type Output = Self;
+    fn mul(self, other: Self) -> Self {
+        G1(self.0 * other.0)
+    }
+}
+
 #[derive(Copy, Clone, PartialEq, Eq, RustcDecodable, RustcEncodable, Serialize, Deserialize)]
 #[repr(C)]
 pub struct G2(groups::G2);
@@ -165,6 +174,16 @@ impl Mul<Fr> for G2 {
     type Output = G2;
 
     fn mul(self, other: Fr) -> G2 { G2(self.0 * other.0) }
+}
+
+
+// Dummy Mul for generics in upstream crates using Group trait.
+// This is a hackjob that exposes upstream crates to hidden errors.
+impl Mul<Self> for G2 {
+    type Output = Self;
+    fn mul(self, other: Self) -> Self {
+        G2(self.0 * other.0)
+    }
 }
 
 #[derive(Copy, Clone, PartialEq, Eq, Serialize, Deserialize)]
